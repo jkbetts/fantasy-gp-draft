@@ -1,7 +1,7 @@
 let teamNumInt = 1;
 let round = 1;
 var alerts;
-let riders = ['Aleix Espargaro', 'Johann Zarco', 'Tito Rabat', 'Andrea Dovizioso', 'Danilo Petrucci', 'Jack Miller', 'Francesco Bagnaia', 'Takaaki Nakagami', 'Cal Crutchlow', 'Alex Marquez', 'Marc Marquez', 'Brad Binder', 'Iker Lecuona', 'Miguel Oliveira', 'Joan Mir', 'Alex Rins', 'Maverick Vinales', 'Valentino Rossi', 'Fabio Quartararo', 'Franco Morbidelli'];
+let riders = ['#41 Aleix Espargaro', '#5 Johann Zarco', '#53 Tito Rabat', '#04 Andrea Dovizioso', '#9 Danilo Petrucci', '#43 Jack Miller', '#63 Francesco Bagnaia', '#30 Takaaki Nakagami', '#35 Cal Crutchlow', '#73 Alex Marquez', '#93 Marc Marquez', '#33 Brad Binder', '#27 Iker Lecuona', '#88 Miguel Oliveira', '#36 Joan Mir', '#42 Alex Rins', '#12 Maverick Vinales', '#46 Valentino Rossi', '#20 Fabio Quartararo', '#21 Franco Morbidelli'];
 var riderDraft;
 var teamNumString;
 
@@ -46,7 +46,7 @@ function draft(){
     }
     else{
         riderDraft = Math.floor(Math.random() * (riders.length));
-        alerts.innerHTML = 'Round ' + round + ' draft:<br><br>' + riders[riderDraft] + '<br><br><button id="accept" type="button" onclick="draft();">Accept</button>';
+        alerts.innerHTML = 'Round ' + round + ' draft:<br><br>' + '<span style="font-size:24px;">'+ riders[riderDraft] + '</span><br><br><button id="accept" type="button" onclick="draft();">Accept</button>';
 
         switch (true) {
             case (teamNumInt == 1):

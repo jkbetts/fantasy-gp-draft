@@ -1,12 +1,16 @@
 html{
     display: block;
-    background-color: #171c21;
+    background: rgb(29,34,40);
+    background: linear-gradient(180deg, rgba(29,34,40,1) 0%, rgba(36,43,49,1) 47%, rgba(21,26,31,1) 100%);
     color: white;
     display: block;
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;   
+    overflow-x: hidden;
 }
 header{
     margin-top: 10px;
@@ -14,7 +18,8 @@ header{
 }
 
 #user-create-container{
-    background-color: #242b31;
+    background: rgb(36,43,49);
+    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
     position: absolute;
     width: 350px;
     top: 40%;
@@ -33,7 +38,8 @@ header{
     box-shadow: 1px 1px 30px black;
 }
 #team1, #team2, #team3, #team4{
-    background-color: #242b31;
+    background: rgb(36,43,49);
+    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
     position: absolute;
     padding: 20px;
     left: 2.5%;
@@ -88,7 +94,8 @@ button{
 #start-draft{
     position: absolute;
     font-size: 20px;
-    background-color: #242b31;
+    background: rgb(36,43,49);
+    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
     border-bottom: 2px solid #16af3d;
     border-radius: 0px;
     top: 40%;
@@ -110,7 +117,8 @@ button{
 #alerts{
     position: absolute;
     font-size: 20px;
-    background-color: #242b31;
+    background: rgb(36,43,49);
+    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
     border-bottom: 2px solid #c5003e;
     font-size: 15px;
     width: 350px;

@@ -13,8 +13,14 @@ html{
     overflow-x: hidden;
 }
 header{
+    background-color: #1d2228;
+    height: 50px;
+    line-height: 35px;
     margin-top: 10px;
     font-size: 25px;
+    text-align: center;
+    justify-content: center;
+    border-bottom: 2px solid #c5003e;
 }
 
 #user-create-container{
@@ -40,7 +46,7 @@ header{
 #team1, #team2, #team3, #team4{
     background: rgb(36,43,49);
     background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
-    position: absolute;
+    position: fixed;
     padding: 20px;
     left: 2.5%;
     bottom: 20px;
@@ -88,8 +94,12 @@ button{
     box-shadow: 0 0 2px black;
 }
 #roster-container{
-    height:400px;
-    width: 100%;
+    background-color: rgb(56, 56, 34);
+    margin-top: 50px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 100px 100px 100px 100px 100px;
 }
 #start-draft{
     position: absolute;
@@ -128,4 +138,14 @@ button{
     padding: 25px;
     box-sizing: border-box;
     box-shadow: 1px 1px 20px black;
+}
+.riderBox{
+    background: rgb(36,43,49);
+    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
+    padding: 20px;
+    text-align: center;
+    /* border-top: 2px solid #c5003e; */
+    border-bottom: 2px solid #14191d;
+    box-shadow: 1px 1px 10px black;
+    box-sizing: border-box;
 }

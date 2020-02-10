@@ -1,9 +1,11 @@
 let teamNumInt = 1;
 let round = 1;
 var alerts;
-let riders = ['#41 Aleix Espargaro', '#5 Johann Zarco', '#53 Tito Rabat', '#04 Andrea Dovizioso', '#9 Danilo Petrucci', '#43 Jack Miller', '#63 Francesco Bagnaia', '#30 Takaaki Nakagami', '#35 Cal Crutchlow', '#73 Alex Marquez', '#93 Marc Marquez', '#33 Brad Binder', '#27 Iker Lecuona', '#88 Miguel Oliveira', '#36 Joan Mir', '#42 Alex Rins', '#12 Maverick Vinales', '#46 Valentino Rossi', '#20 Fabio Quartararo', '#21 Franco Morbidelli'];
+let riders = ['#41 Aleix Espargaro', '#5 Johann Zarco', '#53 Tito Rabat', '#04 Andrea Dovizioso', '#9 Danilo Petrucci', '#43 Jack Miller', '#63 Francesco Bagnaia', '#30 Takaaki Nakagami', '#35 Cal Crutchlow', '#73 Alex Marquez', '#93 Marc Marquez', '#33 Brad Binder', '#27 Iker Lecuona', '#88 Miguel Oliveira', '#36 Joan Mir', '#42 Alex Rins', '#12 Maverick Vinales', '#46 Valentino Rossi', '#20 Fabio Quartararo', '#21 Franco Morbidelli', "#44 Pol Espargaro"];
 var riderDraft;
 var teamNumString;
+
+document.getElementById("addNames").addEventListener("click",createTeam);
 
 
 function createTeam(){
@@ -35,14 +37,14 @@ function startDraft(){
     alerts = document.createElement('div');
     rosterContainer.appendChild(alerts);
     alerts.id = "alerts";
-    alerts.innerHTML = 'Teams will draft riders at random. Once all riders have been drafted, teams will have the opportunity to trade riders.<br><br><button id="accept" type="button" onclick="draft();">Accept</button>';
+    alerts.innerHTML = 'Teams will draft riders at random. Once all riders have been drafted, teams will have the opportunity to trade riders.<br><br><button id="accept" type="button" onclick="showRiders();">Accept</button>';
 }
 function draft(){
     if(teamNumInt > 4){
         teamNumInt = 1;
     }
     if (riders.length == 0) {
-        alerts.innerHTML = "All riders have been drafted";
+        alerts.innerHTML = 'All riders have been drafted.<br><br><button id="accept" type="button" onclick="clearAlerts();">Accept</button>';
     }
     else{
         riderDraft = Math.floor(Math.random() * (riders.length));
@@ -65,5 +67,23 @@ function draft(){
         round++;
         teamNumInt++;        
         riders.splice(riderDraft, 1);
+    }
+}
+function clearAlerts(){
+    alerts.remove();
+}
+
+function showRiders(){
+    var i;
+
+    for (i = 0; i < riders.length; i++){
+        var rider = riders[i];
+        var riderBox = document.createElement("div");
+        riderBox.innerHTML = rider;
+        riderBox.className = "riderBox";
+        riderBox.id = "rider" + i;
+        var rosterContainer = document.getElementById("roster-container");
+        alerts.remove();
+        rosterContainer.appendChild(riderBox);
     }
 }

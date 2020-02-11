@@ -50,12 +50,14 @@ header{
     padding: 20px;
     left: 2.5%;
     bottom: 20px;
+    height: 10%;
     width: 20%;
     text-align: center;
     border-top: 2px solid #c5003e;
     border-bottom: 2px solid #14191d;
     box-shadow: 1px 1px 10px black;
     box-sizing: border-box;
+    line-height: 20px;
 }
 #team2{
     left: 27.5%;
@@ -70,8 +72,11 @@ header{
 }
 
 #team1:hover, #team2:hover, #team3:hover, #team4:hover{
+    background: rgb(67,79,89);
+    background: linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%);
     box-shadow: 1px 1px 20px black;
 }
+
 input{
     font-size: 17px;
     border: 0px solid transparent;
@@ -94,11 +99,11 @@ button{
     box-shadow: 0 0 2px black;
 }
 #roster-container{
-    background-color: rgb(56, 56, 34);
+
     margin-top: 50px;
     height: auto;
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: auto auto auto auto auto;
     grid-template-rows: 100px 100px 100px 100px 100px;
 }
 #start-draft{
@@ -142,10 +147,18 @@ button{
 .riderBox{
     background: rgb(36,43,49);
     background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
-    padding: 20px;
+    padding: 17px;
+    width: 95%;
+    height: 95%;
     text-align: center;
     /* border-top: 2px solid #c5003e; */
     border-bottom: 2px solid #14191d;
     box-shadow: 1px 1px 10px black;
+    box-sizing: border-box;
+    font-size: 3vmin;
+}
+.riderBox:hover{
+    background: rgb(67,79,89);
+    background: linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%);
     box-sizing: border-box;
 }

@@ -1,10 +1,219 @@
 let teamNumInt = 1;
 let round = 1;
 var alerts;
-let riders = ['#41 Aleix Espargaro', '#5 Johann Zarco', '#04 Andrea Dovizioso', '#9 Danilo Petrucci', '#43 Jack Miller', '#63 Pecco Bagnaia', '#30 Takaaki Nakagami', '#35 Cal Crutchlow', '#73 Alex Marquez', '#93 Marc Marquez', '#33 Brad Binder', '#27 Iker Lecuona', '#88 Miguel Oliveira', '#36 Joan Mir', '#42 Alex Rins', '#12 Maverick Vinales', '#46 Valentino Rossi', '#20 Fabio Quartararo', '#21 Franco Morbidelli', "#44 Pol Espargaro"];
+
+
+const EspA = {
+    name: ['Aleix Espargaro'],
+    team: 'Aprilia',
+    nation: 'Spain',
+    points: 63,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+}
+const Zarco = {
+    name: ['Johann Zarco'],
+    team: 'Reale Avintia Ducati',
+    nation: 'France',
+    points: 30,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,    
+}
+const Dovi = {
+    name: ['Andrea Dovizioso'],
+    team: 'Ducati Factory',    
+    nation: 'Italy',
+    points: 269,
+    poles: 0,
+    wins: 2,
+    secondplaces: 3,
+    lapsinfirst: 33,
+}
+const Petrux = {
+    name: ['Danilo Petrucci'],
+    team: 'Ducati Factory',
+    nation: 'Italy',
+    points: 176,
+    poles: 0,
+    wins: 1,
+    secondplaces: 0,
+    lapsinfirst: 14,
+}
+const Miller = {
+    name: ['Jack Miller'],
+    team: 'Primac Ducati',
+    nation: 'Australia',
+    points: 165,
+    poles: 0,
+    wins: 2,
+    secondplaces: 0,
+    lapsinfirst: 2,
+}
+const Pecco = {
+    name: ['Francesco Bagnaia'],
+    team: 'Primac Ducati',
+    nation: 'Italy',
+    points: 54,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+}
+const Nakagami = {
+    name: ['Takaaki Nakagami'],
+    team: 'LCR Honda',
+    nation: 'Japan',
+    points: 74,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+}
+const Crutchlow = {
+    name: ['Cal Crutchlow'],
+    team: 'LCR Honda',
+    nation: 'United Kingdom',
+    points: 133,
+    poles: 0,
+    wins: 0,
+    secondplaces: 1,
+    lapsinfirst: 6,
+}
+const MarA = {
+    name: ['Alex Marquez'],
+    team: 'Repsol Honda',
+    nation: 'Spain',
+    points: 0,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+}
+const MarM = {
+    name: ['Marc Marquez'],
+    team: 'Repsol Honda',
+    nation: 'Spain',
+    points: 420,
+    poles: 10,
+    wins: 12,
+    secondplaces: 6,
+    lapsinfirst: 264,
+}
+const Binder = {
+    name: ['Brad Binder'],
+    team: 'KTM Factory',
+    nation: 'South Africa',
+    points: 0,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0
+}
+const Lecuona = {
+    name: ['Iker Lecuona'],
+    team: 'KTM Factory',
+    nation: 'Spain',
+    points: 0,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0
+}
+const Oliveira = {
+    name: ['Miguel Oliveira'],
+    team: 'Tech3 KTM',
+    nation: 'Portugal',
+    points: 33,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+}
+const Mir = {
+    name: ['Joan Mir'],
+    team: 'Suzuki Factory',
+    nation: 'Spain',
+    points: 92,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0
+}
+const Rins = {
+    name: ['Alex Rins'],
+    team: 'Suzuki Factory',
+    nation: 'Spain',
+    points: 205,
+    poles: 0,
+    wins: 2,
+    secondplaces: 1,
+    lapsinfirst: 12,
+}
+const Vinales = {
+    name: ['Maverick Vinales'],
+    team: 'Yamaha Factory',
+    nation: 'Spain',
+    points: 211,
+    poles: 3,
+    wins: 2,
+    secondplaces: 1,
+    lapsinfirst: 49,
+}
+const Rossi = {
+    name: ['Valentino Rossi'],
+    team: 'Yamaha Factory',
+    nation: 'Italy',
+    points: 174,
+    poles: 0,
+    wins: 0,
+    secondplaces: 2,
+    lapsinfirst: 11,
+}
+const Morbidelli = {
+    name: ['Franco Morbidelli'],
+    team: 'Petronas Yamaha',
+    nation: 'Italy',
+    points: 115,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0
+}
+const Quartararo = {
+    name: ['Fabio Quartararo'],
+    team: 'Petronas Yamaha',
+    nation: 'France',
+    points: 192,
+    poles: 6,
+    wins: 0,
+    secondplaces: 5,
+    lapsinfirst: 73
+}
+const Pol = {
+    name: ['Pol Espargaro'],
+    team: 'KTM Factory',
+    nation: 'Spain',
+    points: 100,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0
+}
+
+
+
+
+
+let riders = [EspA, Zarco, Dovi, Petrux, Miller, Pecco, Nakagami, Crutchlow, MarA, MarM, Binder, Lecuona, Oliveira, Mir, Rins, Vinales, Rossi, Quartararo, Morbidelli, Pol];
 var riderDraft;
 var teamNumString;
 var firstDraft, currentDraft;
+
+
 
 document.getElementById("addNames").addEventListener("click",createTeam);
 
@@ -40,7 +249,7 @@ function startDraft(){
     alerts = document.createElement('div');
     rosterContainer.appendChild(alerts);
     alerts.id = "alerts";
-    alerts.innerHTML = 'Draft order will be randomly established.<br><br><button id="accept" type="button" onclick="assignDraftOrder();">Accept</button>';
+    alerts.innerHTML = 'The first team to draft will be randomly chosen.<br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
 }
 function assignDraftOrder(){
     clearAlerts();
@@ -69,27 +278,31 @@ function showRiders(){
         let riderBox = document.createElement("div");
         let riderID = "rider" + i;
 
-        riderBox.innerHTML = rider;
+        riderBox.innerHTML = rider.name;
         riderBox.className = "riderBox";
         riderBox.id = riderID;
+
         var rosterContainer = document.getElementById("roster-container");
         clearAlerts();
         rosterContainer.appendChild(riderBox);
-        document.getElementById(riderID).addEventListener("click",function(){highlightRider(riderID)});
+        document.getElementById(riderID).addEventListener("click",function(){highlightRider(riderID, rider)});
     }
 }
 
 
-function highlightRider(riderID){
+function highlightRider(riderID, rider){
     alerts = document.createElement('div');
     let rosterContainer = document.getElementById("roster-container");
     rosterContainer.style.opacity = "20%";
     document.body.appendChild(alerts);
     alerts.id = "alerts";
-    alerts.style.fontSize = "25px";
-    alerts.style.lineHeight = "40px";
+    // alerts.style.fontSize = "25px";
+    // alerts.style.lineHeight = "40px";
     alerts.style.padding = "20px";
-    alerts.innerHTML = document.getElementById(riderID).innerHTML + '<br><button id="draft-btn" type="button">Draft</button> <button id="back-btn" type="button">Back</button>';
+    alerts.innerHTML = '<span style="font-size:20px;">'+rider.name+'</span>';
+    alerts.innerHTML += '<br><br>Team: ' + rider.team + '<br>Country: ' + rider.nation + '<br>2019 Points: ' + rider.points + '<br>2019 Wins: ' + rider.wins + '<br>2019 Pole Positions: ' + rider.poles + '<br>2019 Second Place Finishes: ' + rider.secondplaces + '<br>2019 Laps in First: ' + rider.lapsinfirst + '<br><br><button id="draft-btn" type="button">Draft</button> <button id="back-btn" type="button">Back</button>';
+
+    
     document.getElementById("draft-btn").addEventListener("click", function(){draft(riderID)});
     document.getElementById("back-btn").addEventListener("click", function(){clearAlerts()});
 }

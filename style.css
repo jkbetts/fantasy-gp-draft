@@ -176,19 +176,46 @@ button:focus{
     height: 92%;
     text-align: center;
     line-height: 50px;
-    text-transform: uppercase;
-    border-radius: 15px;
-    /* border-top: 2px solid #c5003e; */
-    /* border-bottom: 2px solid #14191d; */
+    border-radius: 20px;
+    box-shadow: 0px 1px 10px rgba(21,26,31);
     box-sizing: border-box;
     font-size: 2vmin;
-    opacity: 98%;
+    opacity: 99%;
 }
 .riderBox:hover{
     background: rgb(67,79,89);
     background: linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%);
     box-sizing: border-box;
+    opacity: 100%;
 }
+
+#nameBox{
+    font-size: 25px;
+}
+#picBox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+table{
+
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: auto;
+    width: 90%;
+    text-align: left;
+    padding: 5px;
+    border-radius: 20px;
+}
+td{
+    padding: 5px;
+}
+#country, #points, #wins, #secondplaces, #poles, #lapsinfirstplace{
+    text-align: center;
+}
+
 .drafted-rider{
     color: black;
     margin-top:5px;

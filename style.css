@@ -215,11 +215,11 @@ table{
 td{
     padding: 5px;
 }
-#country, #points, #wins, #secondplaces, #poles, #lapsinfirstplace{
+#country, #points, #wins, #secondplaces, #poles, #lapsinfirstplace, #riderpoints{
     text-align: center;
 }
 
-.drafted-rider{
+.drafted-rider, #riderpoints{
     color: black;
     margin-top:5px;
     padding: 2px;
@@ -229,6 +229,11 @@ td{
     box-shadow: 1px 1px 10px black;
     box-sizing: border-box;
 }
+
+#riderpoints{
+    width: 50px;
+}
+
 #team-title1, #team-title2, #team-title3, #team-title4{
     position: relative;
     margin-left: auto;
@@ -263,4 +268,15 @@ td{
     transform: translate(-50%,-50%);
     opacity: 30%;
     z-index: -1;
+}
+#teampoints1, #teampoints2, #teampoints3, #teampoints4, #handicap{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+#handicap{
+    margin-top: 20px;
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
 }

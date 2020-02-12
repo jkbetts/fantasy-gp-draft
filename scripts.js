@@ -232,6 +232,7 @@ let riders = [EspA, Zarco, Dovi, Petrux, Miller, Pecco, Nakagami, Crutchlow, Mar
 var riderDraft;
 var teamNumString;
 var firstDraft, currentDraft;
+var teampoints = [0,0,0,0,0,0];
 
 
 
@@ -244,6 +245,11 @@ function createTeam(){
         newTeam.id = teamNumString;
         document.body.appendChild(newTeam);
         addTeamName(teamNumString);
+
+        let pointsTotal = document.createElement('div');
+        pointsTotal.id = "teampoints"+teamNumInt;
+        pointsTotal.innerHTML = '2019 Combined Points:  0';
+        newTeam.appendChild(pointsTotal);
     }
     teamNumInt++;
     if(teamNumInt == 5){
@@ -257,6 +263,7 @@ function createTeam(){
 function addTeamName(teamNumString){
     let teamName = document.createElement("div");
     let teamBox = document.getElementById(teamNumString);
+    teamName.className = "teams";
     teamName.id = "team-title"+teamNumInt;
     teamName.innerHTML = document.getElementById("inputNames").value;
     teamBox.appendChild(teamName);
@@ -280,8 +287,8 @@ function assignDraftOrder(){
     firstDraft = document.getElementById('team'+teamArray[randTeam]);
     currentDraft = teamArray[randTeam];
 
-    firstDraft.style.height = "30%";
-    alerts.addEventListener("click",function(){clearAlerts()});
+    firstDraft.style.background = 'linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)';
+    firstDraft.style.boxShadow = '0 0 10px #bebebe79';
 }
 
 function clearAlerts(){
@@ -343,7 +350,7 @@ function highlightRider(riderID, rider){
 
     //get table elements by id to insert stats
     document.getElementById('country').innerHTML = rider.nation;
-    document.getElementById('points').innerHTML = rider.points;
+    document.getElementById('riderpoints').innerHTML = rider.points;
     document.getElementById('wins').innerHTML = rider.wins;
     document.getElementById('secondplaces').innerHTML = rider.secondplaces;
     document.getElementById('poles').innerHTML = rider.poles;
@@ -356,10 +363,10 @@ function highlightRider(riderID, rider){
     buttonArea.innerHTML = '<button id="draft-btn" type="button">Draft</button> <button id="back-btn" type="button">Back</button>';
 
     
-    document.getElementById("draft-btn").addEventListener("click", function(){draft(riderID)});
+    document.getElementById("draft-btn").addEventListener("click", function(){draft(riderID,rider)});
     document.getElementById("back-btn").addEventListener("click", function(){clearAlerts()});
 }
-function draft(riderID){
+function draft(riderID,rider){
     let currentTeam = document.getElementById("team"+currentDraft);
     let addedRider = document.createElement('div');
     addedRider.className = "drafted-rider"
@@ -369,9 +376,21 @@ function draft(riderID){
     clearAlerts();
 
     document.getElementById(riderID).remove();
-    currentTeam.style.height = "auto";
+    currentTeam.style.background = 'linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%)';
+    currentTeam.style.boxShadow = '0 0 10px black';
+    
+    //add rider points to estimated points total from 2019
+    teampoints[currentDraft] += rider.points;
+    document.getElementById("teampoints"+currentDraft).innerHTML = "2019 Combined Points:  " +teampoints[currentDraft];
+    
+    //move to next draft
     currentDraft++;
     clearAlerts();
+
+
+
+
+
     if(currentDraft > 4){
         currentDraft = 1;
     }
@@ -379,11 +398,52 @@ function draft(riderID){
     if(document.getElementById("roster-container").innerHTML == ""){
         currentTeam.style.height = "auto";
         alerts = document.createElement('div');
-        document.getElementById("roster-container").appendChild(alerts);
         alerts.id = "alerts";
         alerts.innerHTML = '2020 Draft Complete!<br><br>Good luck this season!';
+        alerts.style.top = '30%';
+        document.getElementById("roster-container").appendChild(alerts);
+        applyHandicap();
     }
     else{
-    currentTeam.style.height = "30%";
+    currentTeam.style.background = "linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)";
+    currentTeam.style.boxShadow = "0 0 10px #bebebe79";
     }
+}
+
+function applyHandicap(){
+    teampoints.splice(0,1);
+    teampoints.splice(4,1);
+
+    let largest = Math.max.apply(Math, teampoints);
+
+    let hc1 = Math.floor(((largest - teampoints[0])/largest)*100);
+    let hc2 = Math.floor(((largest - teampoints[1])/largest)*100);
+    let hc3 = Math.floor(((largest - teampoints[2])/largest)*100);
+    let hc4 = Math.floor(((largest - teampoints[3])/largest)*100);
+
+
+
+
+    let handicap1 = document.createElement('div');
+        handicap1.id = "handicap";
+        handicap1.innerHTML = 'Handicap:  ' + hc1 + '%<br><br>Your 2020 team points will be worth ' + hc1 + '% more to keep teams competitive.';
+    let handicap2 = document.createElement('div');
+        handicap2.id = "handicap";
+        handicap2.innerHTML = 'Handicap:  ' + hc2 + '%<br><br>Your 2020 team points will be worth ' + hc2 + '% more to keep teams competitive.';
+    let handicap3 = document.createElement('div');
+        handicap3.id = "handicap";
+        handicap3.innerHTML = 'Handicap:  ' + hc3 + '%<br><br>Your 2020 team points will be worth ' + hc3 + '% more to keep teams competitive.';
+    let handicap4 = document.createElement('div');
+        handicap4.id = "handicap";
+        handicap4.innerHTML = 'Handicap:  ' + hc4 + '%<br><br>Your 2020 team points will be worth ' + hc4 + '% more to keep teams competitive.';
+
+
+    let team1 = document.getElementById("team1");
+        team1.appendChild(handicap1);
+    let team2 = document.getElementById("team2");
+        team2.appendChild(handicap2);
+    let team3 = document.getElementById("team3");
+        team3.appendChild(handicap3);
+    let team4 = document.getElementById("team4");
+        team4.appendChild(handicap4);
 }

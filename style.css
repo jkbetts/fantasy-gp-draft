@@ -157,19 +157,30 @@ button:focus{
     font-family: 'Muli', sans-serif;
     position: absolute;
     font-size: 20px;
-    background: rgb(36,43,49);
-    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
-    border-bottom: 2px solid #c5003e;
+    background: rgb(253,29,29);
+    background: linear-gradient(37deg, rgba(253,29,29,1) 0%, rgba(215,151,60,1) 68%);;
     font-size: 15px;
-    width: 350px;
-    top: 40%;
+    width: 356px;
+    height: 500px;
+    padding: 2px;
+    top: 42%;
     left: 50%;
     transform: translate(-50%,-50%);
-    padding: 25px;
+    /* padding: 25px; */
     border-radius: 2px;
     box-sizing: border-box;
     box-shadow: 1px 1px 20px black;
     z-index: 2;
+}
+#grayout{
+    height: 496px;
+    width: 352px;
+    padding: 15px;
+    padding-bottom:25px;
+    background: rgb(36,43,49);
+    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
+    box-shadow: inset 0 0 5px black;
+    box-sizing: border-box;
 }
 .riderBox{
     display: table;

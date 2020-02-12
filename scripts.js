@@ -1,6 +1,6 @@
 let teamNumInt = 1;
 let round = 1;
-var alerts;
+var alerts, grayOut;
 
 
 const EspA = {
@@ -83,7 +83,7 @@ const Nakagami = {
 const Crutchlow = {
     name: ['#35 Cal Crutchlow'],
     team: 'LCR Honda',
-    nation: 'United Kingdom',
+    nation: 'UK',
     points: 133,
     poles: 0,
     wins: 0,
@@ -273,12 +273,27 @@ function addTeamName(teamNumString){
 function startDraft(){
     document.getElementById("start-draft").remove();
     let rosterContainer = document.getElementById("roster-container");
+
     alerts = document.createElement('div');
-    rosterContainer.appendChild(alerts);
+    grayOut = document.createElement('div');
     alerts.id = "alerts";
-    alerts.innerHTML = 'The first team to draft will be randomly chosen.  Subsequent draft order will proceed from left to right.<br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
+    grayOut.id = "grayout";
+
+    alerts.style.height = "340px";
+    grayOut.style.height = "336px";
+    grayOut.style.padding = "40px";
+
+    rosterContainer.appendChild(alerts);
+    alerts.appendChild(grayOut);
+
+    grayOut.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>Handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Be careful with your selections! Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
 }
 function assignDraftOrder(){
+    
+    for(i = 1; i<5; i++){
+        document.getElementById("team"+i).style.opacity = "50%";
+    }
+
     clearAlerts();
     showRiders();
     let teamArray = ['1','2','3','4']
@@ -288,6 +303,7 @@ function assignDraftOrder(){
     currentDraft = teamArray[randTeam];
 
     firstDraft.style.background = 'linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)';
+    firstDraft.style.opacity = "100%";
     firstDraft.style.boxShadow = '0 0 10px #bebebe79';
 }
 
@@ -342,6 +358,8 @@ function highlightRider(riderID, rider){
     //create divs for rider highlight & giv ids
     alerts = document.createElement('div');
         alerts.id = "alerts";
+    grayOut = document.createElement('div');
+        grayOut.id = "grayout";
     let nameBox = document.createElement('div');
         nameBox.id = "nameBox";
     let picBox = document.createElement('div');
@@ -356,10 +374,11 @@ function highlightRider(riderID, rider){
 
     //append divs to document
     document.body.appendChild(alerts);
-    alerts.appendChild(nameBox);
-    alerts.appendChild(picBox);
-    alerts.appendChild(statsTable);
-    alerts.appendChild(buttonArea);
+    alerts.appendChild(grayOut);
+    grayOut.appendChild(nameBox);
+    grayOut.appendChild(picBox);
+    grayOut.appendChild(statsTable);
+    grayOut.appendChild(buttonArea);
 
     //add rider name and image
     nameBox.innerHTML = rider.name
@@ -414,15 +433,28 @@ function draft(riderID,rider){
     }
     currentTeam = document.getElementById("team"+currentDraft);
     if(document.getElementById("roster-container").innerHTML == ""){
-        document.getElementById("team1").style.opacity = "100%";
-        document.getElementById("team2").style.opacity = "100%";
-        document.getElementById("team3").style.opacity = "100%";
-        document.getElementById("team4").style.opacity = "100%";
-        alerts = document.createElement('div');
-        alerts.id = "alerts";
-        alerts.innerHTML = '2020 Draft Complete!<br><br>Good luck this season!';
-        alerts.style.top = '30%';
-        document.getElementById("roster-container").appendChild(alerts);
+       
+
+        //need to get in here with a for loop but was having issues
+            let team1 = document.getElementById("team1");
+            team1.style.opacity = "100%";
+            team1.style.bottom = "150px";
+            team1.style.height = "409px";
+            let team2 = document.getElementById("team2");
+            team2.style.opacity = "100%";
+            team2.style.bottom = "150px";
+            team2.style.height = "409px";
+            let team3 = document.getElementById("team3");
+            team3.style.opacity = "100%";
+            team3.style.bottom = "150px";
+            team3.style.height = "409px";
+            let team4 = document.getElementById("team4");
+            team4.style.opacity = "100%";
+            team4.style.bottom = "150px";
+            team4.style.height = "409px";
+        
+        
+        
         applyHandicap();
     }
     else{

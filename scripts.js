@@ -269,7 +269,7 @@ function startDraft(){
     alerts = document.createElement('div');
     rosterContainer.appendChild(alerts);
     alerts.id = "alerts";
-    alerts.innerHTML = 'The first team to draft will be randomly chosen.<br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
+    alerts.innerHTML = 'The first team to draft will be randomly chosen.  Subsequent draft order will proceed from left to right.<br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
 }
 function assignDraftOrder(){
     clearAlerts();
@@ -381,7 +381,7 @@ function draft(riderID){
         alerts = document.createElement('div');
         document.getElementById("roster-container").appendChild(alerts);
         alerts.id = "alerts";
-        alerts.innerHTML = '2020 Draft Complete! Good luck this season!';
+        alerts.innerHTML = '2020 Draft Complete!<br><br>Good luck this season!';
     }
     else{
     currentTeam.style.height = "30%";

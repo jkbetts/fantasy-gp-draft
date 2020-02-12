@@ -313,7 +313,7 @@ function showRiders(){
 function highlightRider(riderID, rider){
     //gray out background
     let rosterContainer = document.getElementById("roster-container");
-    rosterContainer.style.opacity = "20%";
+    rosterContainer.style.opacity = "0%";
    
     //create divs for rider highlight & giv ids
     alerts = document.createElement('div');

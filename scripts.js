@@ -12,6 +12,7 @@ const EspA = {
     wins: 0,
     secondplaces: 0,
     lapsinfirst: 0,
+    pic: "images/riderpics/aleix.jpg",
 }
 const Zarco = {
     name: ['Johann Zarco'],
@@ -21,7 +22,8 @@ const Zarco = {
     poles: 0,
     wins: 0,
     secondplaces: 0,
-    lapsinfirst: 0,    
+    lapsinfirst: 0, 
+    pic: "images/riderpics/zarco.jpg",   
 }
 const Dovi = {
     name: ['Andrea Dovizioso'],
@@ -32,6 +34,7 @@ const Dovi = {
     wins: 2,
     secondplaces: 3,
     lapsinfirst: 33,
+    pic: "images/riderpics/dovi.jpg",
 }
 const Petrux = {
     name: ['Danilo Petrucci'],
@@ -42,6 +45,7 @@ const Petrux = {
     wins: 1,
     secondplaces: 0,
     lapsinfirst: 14,
+    pic: "images/riderpics/petrux.jpg",
 }
 const Miller = {
     name: ['Jack Miller'],
@@ -52,6 +56,7 @@ const Miller = {
     wins: 2,
     secondplaces: 0,
     lapsinfirst: 2,
+    pic: "images/riderpics/miller.jpg",
 }
 const Pecco = {
     name: ['Francesco Bagnaia'],
@@ -62,6 +67,7 @@ const Pecco = {
     wins: 0,
     secondplaces: 0,
     lapsinfirst: 0,
+    pic: "images/riderpics/pecco.jpg",
 }
 const Nakagami = {
     name: ['Takaaki Nakagami'],
@@ -72,6 +78,7 @@ const Nakagami = {
     wins: 0,
     secondplaces: 0,
     lapsinfirst: 0,
+    pic: "images/riderpics/nakagami.jpg",
 }
 const Crutchlow = {
     name: ['Cal Crutchlow'],
@@ -82,6 +89,7 @@ const Crutchlow = {
     wins: 0,
     secondplaces: 1,
     lapsinfirst: 6,
+    pic: "images/riderpics/crutchlow.jpg",
 }
 const MarA = {
     name: ['Alex Marquez'],
@@ -92,6 +100,7 @@ const MarA = {
     wins: 0,
     secondplaces: 0,
     lapsinfirst: 0,
+    pic: "images/riderpics/alexm.jpg",
 }
 const MarM = {
     name: ['Marc Marquez'],
@@ -102,6 +111,7 @@ const MarM = {
     wins: 12,
     secondplaces: 6,
     lapsinfirst: 264,
+    pic: "images/riderpics/marc.jpg",
 }
 const Binder = {
     name: ['Brad Binder'],
@@ -111,7 +121,8 @@ const Binder = {
     poles: 0,
     wins: 0,
     secondplaces: 0,
-    lapsinfirst: 0
+    lapsinfirst: 0,
+    pic: "images/riderpics/binder.jpg",
 }
 const Lecuona = {
     name: ['Iker Lecuona'],
@@ -121,7 +132,8 @@ const Lecuona = {
     poles: 0,
     wins: 0,
     secondplaces: 0,
-    lapsinfirst: 0
+    lapsinfirst: 0,
+    pic: "images/riderpics/lecuona.jpg",
 }
 const Oliveira = {
     name: ['Miguel Oliveira'],
@@ -132,6 +144,7 @@ const Oliveira = {
     wins: 0,
     secondplaces: 0,
     lapsinfirst: 0,
+    pic: "images/riderpics/oliveira.jpg",
 }
 const Mir = {
     name: ['Joan Mir'],
@@ -141,7 +154,8 @@ const Mir = {
     poles: 0,
     wins: 0,
     secondplaces: 0,
-    lapsinfirst: 0
+    lapsinfirst: 0,
+    pic: "images/riderpics/mir.jpg",
 }
 const Rins = {
     name: ['Alex Rins'],
@@ -152,6 +166,7 @@ const Rins = {
     wins: 2,
     secondplaces: 1,
     lapsinfirst: 12,
+    pic: "images/riderpics/rins.jpg",
 }
 const Vinales = {
     name: ['Maverick Vinales'],
@@ -162,6 +177,7 @@ const Vinales = {
     wins: 2,
     secondplaces: 1,
     lapsinfirst: 49,
+    pic: "images/riderpics/vinales.jpg",
 }
 const Rossi = {
     name: ['Valentino Rossi'],
@@ -172,6 +188,7 @@ const Rossi = {
     wins: 0,
     secondplaces: 2,
     lapsinfirst: 11,
+    pic: "images/riderpics/rossi.jpg",
 }
 const Morbidelli = {
     name: ['Franco Morbidelli'],
@@ -181,7 +198,8 @@ const Morbidelli = {
     poles: 0,
     wins: 0,
     secondplaces: 0,
-    lapsinfirst: 0
+    lapsinfirst: 0,
+    pic: "images/riderpics/morbidelli.jpg",
 }
 const Quartararo = {
     name: ['Fabio Quartararo'],
@@ -191,7 +209,8 @@ const Quartararo = {
     poles: 6,
     wins: 0,
     secondplaces: 5,
-    lapsinfirst: 73
+    lapsinfirst: 73,
+    pic: "images/riderpics/quartararo.jpg",
 }
 const Pol = {
     name: ['Pol Espargaro'],
@@ -201,7 +220,8 @@ const Pol = {
     poles: 0,
     wins: 0,
     secondplaces: 0,
-    lapsinfirst: 0
+    lapsinfirst: 0,
+    pic: "images/riderpics/pol.jpg",
 }
 
 
@@ -296,10 +316,9 @@ function highlightRider(riderID, rider){
     rosterContainer.style.opacity = "20%";
     document.body.appendChild(alerts);
     alerts.id = "alerts";
-    // alerts.style.fontSize = "25px";
-    // alerts.style.lineHeight = "40px";
     alerts.style.padding = "20px";
-    alerts.innerHTML = '<span style="font-size:20px;">'+rider.name+'</span>';
+    alerts.innerHTML = '<span style="font-size:20px;">'+rider.name+'</span><br><br>';
+    alerts.innerHTML += '<img src="' + rider.pic + '" height="150px">'
     alerts.innerHTML += '<br><br>Team: ' + rider.team + '<br>Country: ' + rider.nation + '<br>2019 Points: ' + rider.points + '<br>2019 Wins: ' + rider.wins + '<br>2019 Pole Positions: ' + rider.poles + '<br>2019 Second Place Finishes: ' + rider.secondplaces + '<br>2019 Laps in First: ' + rider.lapsinfirst + '<br><br><button id="draft-btn" type="button">Draft</button> <button id="back-btn" type="button">Back</button>';
 
     

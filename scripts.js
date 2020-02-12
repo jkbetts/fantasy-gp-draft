@@ -301,17 +301,34 @@ function showRiders(){
     var i;
 
     for (i = 0; i < riders.length; i++){
+        //call each rider individually
         let rider = riders[i];
+        //create their box
         let riderBox = document.createElement("div");
+        //assign numerical value to id
         let riderID = "rider" + i;
 
-        riderBox.innerHTML = rider.name;
+        //create container and define class / give each rider unique id
         riderBox.className = "riderBox";
         riderBox.id = riderID;
-
+        
+        //call the roster container and append rider box to it
         var rosterContainer = document.getElementById("roster-container");
-        clearAlerts();
         rosterContainer.appendChild(riderBox);
+
+        //create inner contents for container including name and rider picture
+        let ridername = document.createElement('div');
+            ridername.id = "ridername";
+            ridername.innerHTML = riders[i].name;
+        let riderpic = document.createElement('div');
+            riderpic.id = "riderpic";
+            riderpic.innerHTML = '<img src="' + riders[i].pic + '" height="75px">';
+    
+        //append rider name and pic spans to rider container
+        riderBox.appendChild(ridername);
+        riderBox.appendChild(riderpic);
+
+        //add event listener to rider box and allow user to open rider profile
         document.getElementById(riderID).addEventListener("click",function(){highlightRider(riderID, rider)});
     }
 }
@@ -371,13 +388,14 @@ function draft(riderID,rider){
     let addedRider = document.createElement('div');
     addedRider.className = "drafted-rider"
     addedRider.id = riderID + "-drafted";
-    addedRider.innerHTML = document.getElementById(riderID).innerHTML;
+    addedRider.innerHTML = rider.name;
     currentTeam.appendChild(addedRider);
     clearAlerts();
 
     document.getElementById(riderID).remove();
     currentTeam.style.background = 'linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%)';
     currentTeam.style.boxShadow = '0 0 10px black';
+    currentTeam.style.opacity = "50%";
     
     //add rider points to estimated points total from 2019
     teampoints[currentDraft] += rider.points;
@@ -396,7 +414,10 @@ function draft(riderID,rider){
     }
     currentTeam = document.getElementById("team"+currentDraft);
     if(document.getElementById("roster-container").innerHTML == ""){
-        currentTeam.style.height = "auto";
+        document.getElementById("team1").style.opacity = "100%";
+        document.getElementById("team2").style.opacity = "100%";
+        document.getElementById("team3").style.opacity = "100%";
+        document.getElementById("team4").style.opacity = "100%";
         alerts = document.createElement('div');
         alerts.id = "alerts";
         alerts.innerHTML = '2020 Draft Complete!<br><br>Good luck this season!';
@@ -407,6 +428,7 @@ function draft(riderID,rider){
     else{
     currentTeam.style.background = "linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)";
     currentTeam.style.boxShadow = "0 0 10px #bebebe79";
+    currentTeam.style.opacity = "100%";
     }
 }
 

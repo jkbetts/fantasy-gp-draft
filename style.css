@@ -1,8 +1,7 @@
 html{
     display: block;
-    background: rgb(29,34,40);
-    background: linear-gradient(180deg, rgba(29,34,40,1) 0%, rgba(36,43,49,1) 47%, rgba(21,26,31,1) 100%);
-    color: #e9e9e9;
+    background: #dbdbdb;
+    color: #293440;
     display: block;
     margin: 0;
     padding: 0;
@@ -15,7 +14,7 @@ html{
 
 #header{
     font-family: 'Montserrat', sans-serif;
-    color: #e9e9e9;
+    color: #29344080;
     position: fixed;
     top: 20px;
     width: 100%;
@@ -28,8 +27,8 @@ html{
 }
 
 #user-create-container{
-    background: rgb(36,43,49);
-    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
+    color: #29344080;
+    background: #efeeee;
     position: absolute;
     width: 350px;
     top: 40%;
@@ -39,63 +38,58 @@ html{
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #c5003e;
-    border-radius: 2px;
-    box-shadow: 1px 1px 10px black;
+    /* border: 1px solid #29344020; */
+    border-radius: 12px;
+    box-shadow: -6px -6px 26px #ffffff90, 6px 6px 26px #29344040;
     box-sizing: border-box;
 }
 
-#user-create-container:hover {
-    background: rgb(67,79,89);
-    background: linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)
-}
 #team1, #team2, #team3, #team4{
-    background: rgb(36,43,49);
-    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
+    color: #29344080;
+    background: #efeeee;;
     position: fixed;
     padding: 20px;
     left: 2.5%;
     bottom: 20px;
     width: 20%;
     text-align: center;
-    border-top: 2px solid #c5003e;
-    border-bottom: 2px solid #14191d;
-    box-shadow: 1px 1px 10px black;
+    border: 1px solid #29344020;
+    border-radius: 12px;
+    box-shadow: -6px -6px 26px #ffffff90, 6px 6px 26px #29344040;
     box-sizing: border-box;
     line-height: 20px;
     z-index: 1;
 }
 #team2{
-    border-top: 2px solid rgb(34,171,33);
+
     left: 27.5%;
 
 }
 #team3{
-    border-top: 2px solid rgb(33,171,161);
+
     left: 52.5%;
 
 }
 #team4{
-    border-top: 2px solid rgb(134,33,171);
+
     left: 77.5%;
 }
 
 #team1:hover, #team2:hover, #team3:hover, #team4:hover{
-    background: rgb(67,79,89);
-    background: linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%);
-    box-shadow: 1px 1px 20px black;
+    opacity: 100%;
 }
 
 input{
+    color: #29344090;
     font-size: 17px;
-    border: 0px solid transparent;
-    border-radius: 2px;
+    border: 1px solid #29344020;
+    border-radius: 7px;
     height: 50px;
     width: 250px;
     padding: 15px;
     text-align: center;
     box-sizing: border-box;
-    box-shadow: 0 0 8px black;
+    box-shadow: -6px -6px 26px #ffffff80, 6px 6px 26px #29344020;
 }
 input:focus{
     outline:none;
@@ -103,14 +97,14 @@ input:focus{
 button{
     margin-top: 10px;
     color: #fff;
-    background: rgb(197,0,62);
-    background: linear-gradient(180deg, rgba(197,0,62,1) 0%, rgba(197,0,62,1) 81%, rgba(149,0,47,1) 100%);
-    border: 1px solid #95002f;
+    background: rgb(253,29,29);
+    background: linear-gradient(0deg, rgba(253,29,29,.80) 0%, rgba(215,151,60,.80) 80%);
+    border: 1px solid #cac9c9;
     font-size: 17px;
     line-height: 22px;
     padding: 7px 14px;
-    border-radius: 5px;
-    box-shadow: 0 0 2px black;
+    border-radius: 7px;
+    box-shadow: -6px -6px 26px #ffffff80, 6px 6px 26px #29344020;
 }
 button:focus{
     outline:none;
@@ -127,67 +121,44 @@ button:focus{
 #start-draft{
     position: absolute;
     font-size: 20px;
-    background: rgb(36,43,49);
-    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
-    border: none;
-    border-bottom: 2px solid #c5003e;
-    border-radius: 0px;
+    background: rgb(253,29,29);
+    background: linear-gradient(0deg, rgba(253,29,29,.90) 0%, rgba(215,151,60,.90) 80%);
+    color: #fff;
+    border: 1px solid #cac9c9;
+    border-radius: 12px;
     top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     padding: 25px;
+    box-shadow: -6px -6px 26px #ffffff80, 6px 6px 26px #29344080;
     box-sizing: border-box;
-    animation-name: pulseShadow;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
-@keyframes pulseShadow{
-    from{box-shadow: 1px 1px 20px #0c0f11;}
-    to{box-shadow: 1px 1px 40px #0c0f11;}
-}
-
-@keyframes autoHide{
-    from{display: auto;}
-    to{display:none;}
-}
 
 #alerts{
     font-family: 'Muli', sans-serif;
     position: absolute;
     font-size: 20px;
-    background: rgb(253,29,29);
-    background: linear-gradient(37deg, rgba(253,29,29,1) 0%, rgba(215,151,60,1) 68%);;
+    background: #efeeee;
     font-size: 15px;
     width: 356px;
     height: 500px;
-    padding: 2px;
+    padding: 25px;
     top: 42%;
     left: 50%;
     transform: translate(-50%,-50%);
     /* padding: 25px; */
-    border-radius: 2px;
+    border-radius: 12px;
     box-sizing: border-box;
-    box-shadow: 1px 1px 20px black;
+    box-shadow: -6px -6px 26px #ffffff80, 6px 6px 26px #29344050;
     z-index: 2;
 }
-#grayout{
-    height: 496px;
-    width: 352px;
-    padding: 15px;
-    padding-bottom:25px;
-    background: rgb(36,43,49);
-    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
-    box-shadow: inset 0 0 5px black;
-    box-sizing: border-box;
-}
+
 .riderBox{
     display: table;
     font-family: 'Muli', sans-serif;
-    color: #e9e9e9;
-    background: rgb(36,43,49);
-    background: linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%);
+    color: #29344080;
+    background: #efeeee;
     padding-top: 17px;
     padding-left: 10px;
     padding-right: 10px;
@@ -195,16 +166,16 @@ button:focus{
     height: 90%;
     text-align: center;
     line-height: 50px;
-    border-radius: 10px;
-    box-shadow: 0px 1px 20px rgba(21,26,31);
+    border-radius: 12px;
+    box-shadow: -6px -6px 26px #ffffff80, 6px 6px 16px #29344050;
     box-sizing: border-box;
     /* font-size: 2vmin; */
     opacity: 97%;
-    border: 2px solid rgb(104, 104, 104);
+    border: 1px solid #ffffff20;
 }
 .riderBox:hover{
-    background: rgb(67,79,89);
-    background: linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%);
+    color: #293440;
+    background: #efeeee;
     box-sizing: border-box;
     opacity: 100%;
 }
@@ -222,7 +193,6 @@ button:focus{
 }
 
 table{
-
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -239,20 +209,16 @@ td{
     text-align: center;
 }
 
-.drafted-rider, #riderpoints{
-    color: black;
+.drafted-rider{
+    color: #29344080;
     margin-top:5px;
     padding: 2px;
-    background: #bebebe;
-    border-bottom: 1px solid black;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px black;
+    background: #efeeee;
+    border-radius: 7px;
+    box-shadow: -6px -6px 16px #ffffff80, 1px 1px 5px #29344020;
     box-sizing: border-box;
 }
 
-#riderpoints{
-    width: 50px;
-}
 
 #team-title1, #team-title2, #team-title3, #team-title4{
     position: relative;
@@ -261,32 +227,21 @@ td{
     height: 50px;
     line-height: 50px;
     justify-content: center;
-    /* width: 80%; */
-    background: rgb(197,0,62);
-    background: linear-gradient(180deg, rgba(197,0,62,1) 0%, rgba(197,0,62,1) 81%, rgba(149,0,47,1) 100%);
-    border-radius: 5px;
-    box-shadow: 1px 1px 15px black;
+    color: #fff;
+    background: rgb(253,29,29);
+    background: linear-gradient(0deg, rgba(253,29,29,.80) 0%, rgba(215,151,60,.80) 100%);
+    border-radius: 7px;
+    box-shadow: -6px -6px 16px #ffffff80, 1px 1px 5px #29344020;
     box-sizing: border-box;
     margin-bottom: 10px;
 }
-#team-title2{
-    background: rgb(34,171,33);
-    background: linear-gradient(180deg, rgba(34,171,33,1) 0%, rgba(31,160,28,1) 81%, rgba(21,116,7,1) 100%);
-}
-#team-title3{
-    background: rgb(33,171,161);
-    background: linear-gradient(180deg, rgba(33,171,161,1) 0%, rgba(33,171,161,1) 81%, rgba(22,122,115,1) 100%);
-}
-#team-title4{
-    background: rgb(134,33,171);
-    background: linear-gradient(180deg, rgba(134,33,171,1) 0%, rgba(134,33,171,1) 81%, rgba(89,17,115,1) 100%);
-}
+
 #mgplogo{
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
-    opacity: 30%;
+    opacity: 70%;
     z-index: -1;
 }
 #teampoints1, #teampoints2, #teampoints3, #teampoints4, #handicap{
@@ -319,7 +274,7 @@ td{
     position: relative;
     left: 5px;
     bottom: 5px;
-    box-shadow: 1px 1px 10px 2px black;
+    box-shadow: -6px -6px 16px #ffffff80, 6px 6px 6px #29344020;
     margin-left: auto;
     margin-right: auto;
 }

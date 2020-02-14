@@ -1,6 +1,6 @@
 let teamNumInt = 1;
 let round = 1;
-var alerts, grayOut;
+var alerts;
 
 
 const EspA = {
@@ -275,23 +275,23 @@ function startDraft(){
     let rosterContainer = document.getElementById("roster-container");
 
     alerts = document.createElement('div');
-    grayOut = document.createElement('div');
-    alerts.id = "alerts";
-    grayOut.id = "grayout";
 
-    alerts.style.height = "340px";
-    grayOut.style.height = "336px";
-    grayOut.style.padding = "40px";
+    alerts.id = "alerts";
+
+    alerts.style.padding = "35px";
+    alerts.style.height = "300px";
+    alerts.style.width = "400px";
+
 
     rosterContainer.appendChild(alerts);
-    alerts.appendChild(grayOut);
 
-    grayOut.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>Handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Be careful with your selections! Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
+
+    alerts.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>Handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Be careful with your selections! Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
 }
 function assignDraftOrder(){
     
     for(i = 1; i<5; i++){
-        document.getElementById("team"+i).style.opacity = "50%";
+        document.getElementById("team"+i).style.opacity = "30%";
     }
 
     clearAlerts();
@@ -302,9 +302,9 @@ function assignDraftOrder(){
     firstDraft = document.getElementById('team'+teamArray[randTeam]);
     currentDraft = teamArray[randTeam];
 
-    firstDraft.style.background = 'linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)';
+    // firstDraft.style.background = 'linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)';
     firstDraft.style.opacity = "100%";
-    firstDraft.style.boxShadow = '0 0 10px #bebebe79';
+    // firstDraft.style.boxShadow = '0 0 10px #bebebe79';
 }
 
 function clearAlerts(){
@@ -358,8 +358,6 @@ function highlightRider(riderID, rider){
     //create divs for rider highlight & giv ids
     alerts = document.createElement('div');
         alerts.id = "alerts";
-    grayOut = document.createElement('div');
-        grayOut.id = "grayout";
     let nameBox = document.createElement('div');
         nameBox.id = "nameBox";
     let picBox = document.createElement('div');
@@ -374,11 +372,10 @@ function highlightRider(riderID, rider){
 
     //append divs to document
     document.body.appendChild(alerts);
-    alerts.appendChild(grayOut);
-    grayOut.appendChild(nameBox);
-    grayOut.appendChild(picBox);
-    grayOut.appendChild(statsTable);
-    grayOut.appendChild(buttonArea);
+    alerts.appendChild(nameBox);
+    alerts.appendChild(picBox);
+    alerts.appendChild(statsTable);
+    alerts.appendChild(buttonArea);
 
     //add rider name and image
     nameBox.innerHTML = rider.name
@@ -412,9 +409,9 @@ function draft(riderID,rider){
     clearAlerts();
 
     document.getElementById(riderID).remove();
-    currentTeam.style.background = 'linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%)';
-    currentTeam.style.boxShadow = '0 0 10px black';
-    currentTeam.style.opacity = "50%";
+    // currentTeam.style.background = 'linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%)';
+    // currentTeam.style.boxShadow = '0 0 10px black';
+    currentTeam.style.opacity = "30%";
     
     //add rider points to estimated points total from 2019
     teampoints[currentDraft] += rider.points;
@@ -458,8 +455,8 @@ function draft(riderID,rider){
         applyHandicap();
     }
     else{
-    currentTeam.style.background = "linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)";
-    currentTeam.style.boxShadow = "0 0 10px #bebebe79";
+    // currentTeam.style.background = "linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)";
+    // currentTeam.style.boxShadow = "0 0 10px #bebebe79";
     currentTeam.style.opacity = "100%";
     }
 }

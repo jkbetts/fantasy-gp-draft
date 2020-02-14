@@ -1,6 +1,6 @@
 let teamNumInt = 1;
 let round = 1;
-var alerts;
+var alerts, riderCard;
 
 
 const EspA = {
@@ -236,13 +236,15 @@ var teampoints = [0,0,0,0,0,0];
 
 
 
-document.getElementById("addNames").addEventListener("click",createTeam);
+$("#addNames").click(createTeam);
 
 function createTeam(){
     if (teamNumInt < 5){
-        let newTeam = document.createElement("div");
         teamNumString = "team" + teamNumInt;
+        
+        let newTeam = document.createElement("div");
         newTeam.id = teamNumString;
+        newTeam.className = "teams";
         document.body.appendChild(newTeam);
         addTeamName(teamNumString);
 
@@ -253,17 +255,18 @@ function createTeam(){
     }
     teamNumInt++;
     if(teamNumInt == 5){
-        document.getElementById("user-create-container").remove();
+        $("#user-create-container").hide();
         let rosterContainer = document.createElement("div");
         document.body.appendChild(rosterContainer);
         rosterContainer.id = "roster-container";
-        rosterContainer.innerHTML = '<button id="start-draft" type="button" onclick="startDraft();">Start Draft</button>';
+        rosterContainer.innerHTML = '<button id="start-draft" type="button">Start Draft</button>';
+
+        $("#start-draft").click(function(){startDraft();});
     }
 }
 function addTeamName(teamNumString){
     let teamName = document.createElement("div");
     let teamBox = document.getElementById(teamNumString);
-    teamName.className = "teams";
     teamName.id = "team-title"+teamNumInt;
     teamName.innerHTML = document.getElementById("inputNames").value;
     teamBox.appendChild(teamName);
@@ -275,18 +278,20 @@ function startDraft(){
     let rosterContainer = document.getElementById("roster-container");
 
     alerts = document.createElement('div');
-
-    alerts.id = "alerts";
-
     alerts.style.padding = "35px";
-    alerts.style.height = "300px";
     alerts.style.width = "400px";
+    alerts.id = "alerts";
 
 
     rosterContainer.appendChild(alerts);
+    $(alerts).animate({height: '300px'}, 'medium');
 
+    alerts.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>Handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Be careful with your selections! Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button">Begin</button>';
 
-    alerts.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>Handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Be careful with your selections! Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button" onclick="assignDraftOrder();">Begin</button>';
+    $("#accept").click(function(){
+        $("#alerts").remove();
+        assignDraftOrder();
+    });
 }
 function assignDraftOrder(){
     
@@ -294,7 +299,6 @@ function assignDraftOrder(){
         document.getElementById("team"+i).style.opacity = "30%";
     }
 
-    clearAlerts();
     showRiders();
     let teamArray = ['1','2','3','4']
     
@@ -302,14 +306,7 @@ function assignDraftOrder(){
     firstDraft = document.getElementById('team'+teamArray[randTeam]);
     currentDraft = teamArray[randTeam];
 
-    // firstDraft.style.background = 'linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)';
     firstDraft.style.opacity = "100%";
-    // firstDraft.style.boxShadow = '0 0 10px #bebebe79';
-}
-
-function clearAlerts(){
-    alerts.remove();
-    document.getElementById("roster-container").style.opacity = "100%";
 
 }
 
@@ -345,19 +342,19 @@ function showRiders(){
         riderBox.appendChild(riderpic);
 
         //add event listener to rider box and allow user to open rider profile
-        document.getElementById(riderID).addEventListener("click",function(){highlightRider(riderID, rider)});
+        $(riderBox).click(function(){
+            highlightRider(riderID, rider);
+        });
     }
 }
 
 
 function highlightRider(riderID, rider){
-    //gray out background
-    let rosterContainer = document.getElementById("roster-container");
-    rosterContainer.style.opacity = "0%";
-   
+    $(".riderBox").hide();
+
     //create divs for rider highlight & giv ids
-    alerts = document.createElement('div');
-        alerts.id = "alerts";
+    riderCard = document.createElement('div');
+        riderCard.className = "riderCard";
     let nameBox = document.createElement('div');
         nameBox.id = "nameBox";
     let picBox = document.createElement('div');
@@ -371,11 +368,12 @@ function highlightRider(riderID, rider){
     let stats = document.getElementById("statsTable");
 
     //append divs to document
-    document.body.appendChild(alerts);
-    alerts.appendChild(nameBox);
-    alerts.appendChild(picBox);
-    alerts.appendChild(statsTable);
-    alerts.appendChild(buttonArea);
+    document.body.appendChild(riderCard);
+    riderCard.appendChild(nameBox);
+    riderCard.appendChild(picBox);
+    riderCard.appendChild(statsTable);
+    riderCard.appendChild(buttonArea);
+    $(riderCard).animate({height: '500px'}, 'medium');
 
     //add rider name and image
     nameBox.innerHTML = rider.name
@@ -393,25 +391,41 @@ function highlightRider(riderID, rider){
     statsTable.innerHTML = stats.innerHTML;
     
     //draft and back button
-    buttonArea.innerHTML = '<button id="draft-btn" type="button">Draft</button> <button id="back-btn" type="button">Back</button>';
+    buttonArea.innerHTML = '<button class="draft-btn" type="button">Draft</button> <button class="back-btn" type="button">Back</button>';
 
     
-    document.getElementById("draft-btn").addEventListener("click", function(){draft(riderID,rider)});
-    document.getElementById("back-btn").addEventListener("click", function(){clearAlerts()});
+    $(".draft-btn").click(function(){
+        draft(riderID,rider);
+        $(".riderBox").show();
+    });
+    $(".back-btn").click(function(){
+        $(riderCard).animate({opacity: '0%', height: '0px'}, 'slow', function(){$(".riderCard").remove()});
+        $(".riderBox").show();
+    });
 }
+
+
 function draft(riderID,rider){
+
+
+
+
     let currentTeam = document.getElementById("team"+currentDraft);
+    let teamLeft = parseInt($(currentTeam).css("left"), 10) + 150;
+    let teamHeight = parseInt($(currentTeam).css("height"),10)+500;
+
+    $(riderCard).animate({left: teamLeft, width: '15%', top: '+=10%'},"fast");
+    $(riderCard).animate({top: teamHeight, opacity: '0%', height: '0px'}, 'medium   ', function(){$(".riderCard").remove()});
+    
     let addedRider = document.createElement('div');
     addedRider.className = "drafted-rider"
     addedRider.id = riderID + "-drafted";
     addedRider.innerHTML = rider.name;
     currentTeam.appendChild(addedRider);
-    clearAlerts();
 
     document.getElementById(riderID).remove();
-    // currentTeam.style.background = 'linear-gradient(180deg, rgba(36,43,49,1) 0%, rgba(36,43,49,1) 72%, rgba(21,26,31,1) 100%)';
-    // currentTeam.style.boxShadow = '0 0 10px black';
-    currentTeam.style.opacity = "30%";
+
+    $(currentTeam).animate({opacity: '30%'},"medium");
     
     //add rider points to estimated points total from 2019
     teampoints[currentDraft] += rider.points;
@@ -419,7 +433,6 @@ function draft(riderID,rider){
     
     //move to next draft
     currentDraft++;
-    clearAlerts();
 
 
 
@@ -430,34 +443,14 @@ function draft(riderID,rider){
     }
     currentTeam = document.getElementById("team"+currentDraft);
     if(document.getElementById("roster-container").innerHTML == ""){
-       
+    
+        let teams = $(".teams");
+        teams.animate({opacity: '100%', top: '30%', height: '600px'},'slow');
 
-        //need to get in here with a for loop but was having issues
-            let team1 = document.getElementById("team1");
-            team1.style.opacity = "100%";
-            team1.style.bottom = "150px";
-            team1.style.height = "409px";
-            let team2 = document.getElementById("team2");
-            team2.style.opacity = "100%";
-            team2.style.bottom = "150px";
-            team2.style.height = "409px";
-            let team3 = document.getElementById("team3");
-            team3.style.opacity = "100%";
-            team3.style.bottom = "150px";
-            team3.style.height = "409px";
-            let team4 = document.getElementById("team4");
-            team4.style.opacity = "100%";
-            team4.style.bottom = "150px";
-            team4.style.height = "409px";
-        
-        
-        
         applyHandicap();
     }
     else{
-    // currentTeam.style.background = "linear-gradient(180deg, rgba(67,79,89,1) 0%, rgba(33,41,47,1) 76%, rgba(21,26,31,1) 100%)";
-    // currentTeam.style.boxShadow = "0 0 10px #bebebe79";
-    currentTeam.style.opacity = "100%";
+        $(currentTeam).animate({opacity: "100%"},'medium');
     }
 }
 

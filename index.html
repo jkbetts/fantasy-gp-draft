@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html id="html">
 <head>
-    <meta name="viewport" content="width=device-width" initial-scale="1">
+    <meta name="viewport" content="width=device-width" user-scalable=no>
     <title>2020 MotoGP Fantasy Draft</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Muli&display=swap" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -16,10 +16,11 @@
 
     <div id="user-create-container">
         <p>Enter Team Names:</p>
-        <form autocomplete="off">
+        <form autocomplete="off" onsubmit="return false">
             <input id="inputNames">
+            <button id="addNames">Add Team</button>        
         </form>
-        <button id="addNames" type="button">Add Team</button>
+
     </div>
 
     <div id="statsTable" hidden>

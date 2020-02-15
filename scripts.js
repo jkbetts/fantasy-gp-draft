@@ -327,7 +327,7 @@ function showRiders(){
         
         //call the roster container and append rider box to it
         var rosterContainer = document.getElementById("roster-container");
-        rosterContainer.appendChild(riderBox);
+
 
         //create inner contents for container including name and rider picture
         let ridername = document.createElement('div');
@@ -340,6 +340,9 @@ function showRiders(){
         //append rider name and pic spans to rider container
         riderBox.appendChild(ridername);
         riderBox.appendChild(riderpic);
+
+        rosterContainer.appendChild(riderBox);
+        $(riderBox).animate({opacity: '97%'}, 'slow');
 
         //add event listener to rider box and allow user to open rider profile
         $(riderBox).click(function(){
@@ -395,6 +398,9 @@ function highlightRider(riderID, rider){
 
     
     $(".draft-btn").click(function(){
+        statsTable.innerHTML = "";
+        buttonArea.innerHTML = "";
+        $(riderCard).animate({height: '250px'},5);
         draft(riderID,rider);
         $(".riderBox").show();
     });
@@ -414,8 +420,8 @@ function draft(riderID,rider){
     let teamLeft = parseInt($(currentTeam).css("left"), 10) + 150;
     let teamHeight = parseInt($(currentTeam).css("height"),10)+500;
 
-    $(riderCard).animate({left: teamLeft, width: '15%', top: '+=10%'},"fast");
-    $(riderCard).animate({top: teamHeight, opacity: '0%', height: '0px'}, 'medium   ', function(){$(".riderCard").remove()});
+    $(riderCard).animate({left: teamLeft, width: '15%', top: '+=30%'},"fast");
+    $(riderCard).animate({top: teamHeight, opacity: '0%', height: '0px'}, 'fast', function(){$(".riderCard").remove()});
     
     let addedRider = document.createElement('div');
     addedRider.className = "drafted-rider"

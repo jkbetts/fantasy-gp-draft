@@ -1,8 +1,3 @@
-let teamNumInt = 1;
-let round = 1;
-var alerts, riderCard;
-
-
 const EspA = {
     name: ['# 41 Aleix Espargaro'],
     team: 'Aprilia',
@@ -229,16 +224,15 @@ const Pol = {
 
 
 let riders = [EspA, Zarco, Dovi, Petrux, Miller, Pecco, Nakagami, Crutchlow, MarA, MarM, Binder, Lecuona, Oliveira, Mir, Rins, Vinales, Rossi, Quartararo, Morbidelli, Pol];
-var riderDraft;
-var teamNumString;
-var firstDraft, currentDraft;
+var riderDraft, teamNumString, firstDraft, currentDraft, alerts, riderCard;
 var teampoints = [0,0,0,0,0,0];
-
+var teamNumInt = 1;
+let round = 1;
 
 
 $("#addNames").click(createTeam);
 
-function createTeam(){
+function createTeam(){  
     if (teamNumInt < 5){
         teamNumString = "team" + teamNumInt;
         
@@ -250,7 +244,7 @@ function createTeam(){
 
         let pointsTotal = document.createElement('div');
         pointsTotal.id = "teampoints"+teamNumInt;
-        pointsTotal.innerHTML = '2019 Combined Points:  0';
+        pointsTotal.innerHTML = "";
         newTeam.appendChild(pointsTotal);
     }
     teamNumInt++;
@@ -259,7 +253,7 @@ function createTeam(){
         let rosterContainer = document.createElement("div");
         document.body.appendChild(rosterContainer);
         rosterContainer.id = "roster-container";
-        rosterContainer.innerHTML = '<button id="start-draft" type="button">Start Draft</button>';
+        rosterContainer.innerHTML = '<button id="start-draft">Start Draft</button>';
 
         $("#start-draft").click(function(){startDraft();});
     }
@@ -342,7 +336,7 @@ function showRiders(){
         riderBox.appendChild(riderpic);
 
         rosterContainer.appendChild(riderBox);
-        $(riderBox).animate({opacity: '97%'}, 'slow');
+        $(riderBox).delay(Math.random()*500).animate({opacity: '97%'}, 'medium');
 
         //add event listener to rider box and allow user to open rider profile
         $(riderBox).click(function(){
@@ -376,13 +370,14 @@ function highlightRider(riderID, rider){
     riderCard.appendChild(picBox);
     riderCard.appendChild(statsTable);
     riderCard.appendChild(buttonArea);
-    $(riderCard).animate({height: '500px'}, 'medium');
+    $(riderCard).animate({height: '570px'}, 'medium');
 
     //add rider name and image
     nameBox.innerHTML = rider.name
     picBox.innerHTML = '<img src="' + rider.pic + '" height="150px">'
 
     //get table elements by id to insert stats
+    document.getElementById('riderteam').innerHTML = rider.team;
     document.getElementById('country').innerHTML = rider.nation;
     document.getElementById('riderpoints').innerHTML = rider.points;
     document.getElementById('wins').innerHTML = rider.wins;
@@ -398,6 +393,7 @@ function highlightRider(riderID, rider){
 
     
     $(".draft-btn").click(function(){
+        //clear stats and buttons for smoother animation
         statsTable.innerHTML = "";
         buttonArea.innerHTML = "";
         $(riderCard).animate({height: '250px'},5);
@@ -435,14 +431,11 @@ function draft(riderID,rider){
     
     //add rider points to estimated points total from 2019
     teampoints[currentDraft] += rider.points;
+
     document.getElementById("teampoints"+currentDraft).innerHTML = "2019 Combined Points:  " +teampoints[currentDraft];
-    
+
     //move to next draft
     currentDraft++;
-
-
-
-
 
     if(currentDraft > 4){
         currentDraft = 1;
@@ -466,34 +459,17 @@ function applyHandicap(){
 
     let largest = Math.max.apply(Math, teampoints);
 
-    let hc1 = Math.floor(((largest - teampoints[0])/largest)*100);
-    let hc2 = Math.floor(((largest - teampoints[1])/largest)*100);
-    let hc3 = Math.floor(((largest - teampoints[2])/largest)*100);
-    let hc4 = Math.floor(((largest - teampoints[3])/largest)*100);
+    for(let i = 1; i<5; i++){
+        let hc = "hc"+i;
+        hc = Math.floor(((largest - teampoints[(i-1)])/largest)*100);
 
+        let handicapName = "handicap"+i;
+        let handicap = document.createElement('div');
+        handicap.className = "handicap";
+        handicap.innerHTML = 'Handicap:  ' + hc + '%<br><br>Your 2020 team points will be worth ' + hc + '% more to keep teams competitive.';
 
-
-
-    let handicap1 = document.createElement('div');
-        handicap1.id = "handicap";
-        handicap1.innerHTML = 'Handicap:  ' + hc1 + '%<br><br>Your 2020 team points will be worth ' + hc1 + '% more to keep teams competitive.';
-    let handicap2 = document.createElement('div');
-        handicap2.id = "handicap";
-        handicap2.innerHTML = 'Handicap:  ' + hc2 + '%<br><br>Your 2020 team points will be worth ' + hc2 + '% more to keep teams competitive.';
-    let handicap3 = document.createElement('div');
-        handicap3.id = "handicap";
-        handicap3.innerHTML = 'Handicap:  ' + hc3 + '%<br><br>Your 2020 team points will be worth ' + hc3 + '% more to keep teams competitive.';
-    let handicap4 = document.createElement('div');
-        handicap4.id = "handicap";
-        handicap4.innerHTML = 'Handicap:  ' + hc4 + '%<br><br>Your 2020 team points will be worth ' + hc4 + '% more to keep teams competitive.';
-
-
-    let team1 = document.getElementById("team1");
-        team1.appendChild(handicap1);
-    let team2 = document.getElementById("team2");
-        team2.appendChild(handicap2);
-    let team3 = document.getElementById("team3");
-        team3.appendChild(handicap3);
-    let team4 = document.getElementById("team4");
-        team4.appendChild(handicap4);
+        let teamNum = "team"+i;
+        let team = document.getElementById(teamNum);
+        team.appendChild(handicap);
+    }
 }

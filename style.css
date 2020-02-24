@@ -142,7 +142,7 @@ button:focus{
     background: #efeeee;
     font-size: 15px;
     width: 356px;
-    height: 100px;
+    height: 300px;
     padding: 25px;
     top: 42%;
     left: 50%;
@@ -197,7 +197,7 @@ table{
     margin-left: auto;
     margin-right: auto;
     table-layout: auto;
-    width: 90%;
+    width: 95%;
     text-align: left;
     padding: 5px;
     border-radius: 20px;
@@ -205,8 +205,9 @@ table{
 td{
     padding: 5px;
 }
-#country, #points, #wins, #secondplaces, #poles, #lapsinfirstplace, #riderpoints{
-    text-align: center;
+#country, #points, #wins, #secondplaces, #poles, #lapsinfirstplace, #riderpoints, #riderteam{
+    text-align: right;
+    margin-left: 10px;
 }
 
 .drafted-rider{
@@ -244,12 +245,12 @@ td{
     opacity: 70%;
     z-index: -1;
 }
-#teampoints1, #teampoints2, #teampoints3, #teampoints4, #handicap{
+#teampoints1, #teampoints2, #teampoints3, #teampoints4, .handicap{
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 13px;
 }
-#handicap{
+.handicap{
     margin-top: 20px;
     font-size: 12px;
     text-align: center;

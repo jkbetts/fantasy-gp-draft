@@ -218,7 +218,27 @@ const Pol = {
     lapsinfirst: 0,
     pic: "images/riderpics/pol.jpg",
 }
-
-
+const Tito = {
+    name: ['#53 Tito Rabat'],
+    team: 'Reale Avintia Ducati',
+    nation: 'Spain',
+    points: 23,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+    pic: "images/riderpics/tito.jpg",
+}
+const Iannone = {
+    name: ['#29 Andrea Iannone'],
+    team: 'Aprilia Factory',
+    nation: 'Italy',
+    points: 43,
+    poles: 0,
+    wins: 0,
+    secondplaces: 0,
+    lapsinfirst: 0,
+    pic: "images/riderpics/iannone.jpg",
+}
 
 

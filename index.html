@@ -14,12 +14,16 @@
     <header>
         2020 MotoGP Fantasy Draft Generator
     </header>
-
+    <div id="number-teams-container">
+        <p>Choose number of teams: (Max 6)</p>
+        <input id="number-teams" type="number" value="2" min="2" max="6">
+        <button id="btn-number-teams">Add Teams</button>
+    </div>
     <div id="user-create-container">
         <p>Enter Team Names:</p>
         <form autocomplete="off" onsubmit="return false">
             <input id="inputNames">
-            <button id="addNames">Add Team</button>        
+            <button id="add-names">Add Team</button>        
         </form>
 
     </div>

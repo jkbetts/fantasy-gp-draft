@@ -1,14 +1,32 @@
-let riders = [EspA, Zarco, Dovi, Petrux, Miller, Pecco, Nakagami, Crutchlow, MarA, MarM, Binder, Lecuona, Oliveira, Mir, Rins, Vinales, Rossi, Quartararo, Morbidelli, Pol];
-var riderDraft, teamID, firstDraft, currentDraft, alerts, riderCard;
-var teampoints = [0,0,0,0,0,0];
-var teamNumInt = 0;
+let riders = [EspA, Zarco, Dovi, Petrux, Miller, Pecco, Nakagami, Crutchlow, MarA, MarM, Binder, Oliveira, Mir, Rins, Vinales, Rossi, Quartararo, Morbidelli, Pol, Lecuona, Tito, Iannone];
+var riderDraft, teamID, firstDraft, currentDraft, alerts, riderCard, largest;
+var teampoints = [];
+var teamNumInt = maxTeams = 0;
 let round = 1;
 
 
-$("#addNames").click(createTeam);
+$("#btn-number-teams").click(function(){
+    let userInput = document.getElementById("number-teams");
+    maxTeams = userInput.value;
+    if (maxTeams < 2 || maxTeams > 6 || isNaN(maxTeams)){
+        alert("Invalid number of teams.")
+    }
+    else{
+        let container = document.getElementById("number-teams-container");
+        container.style.display = "none";
+        ShowTeamNameInput();
+    }
+})
+
+function ShowTeamNameInput(){
+    let container = document.getElementById("user-create-container");
+    container.style.display = "block";
+    $("#add-names").click(function(){createTeam();});
+}
+
 
 function createTeam(){
-    if (teamNumInt < 4){
+    if (teamNumInt < maxTeams){
         teamID = "team" + teamNumInt;
         
         let newTeam = document.createElement("div");
@@ -19,14 +37,17 @@ function createTeam(){
         addTeamName(teamID);
 
         let pointsTotal = document.createElement('div');
+        pointsTotal.className = "teamPoints";
         pointsTotal.id = "teampoints"+teamNumInt;
         pointsTotal.innerHTML = "";
         newTeam.appendChild(pointsTotal);
 
     }
+    teampoints[teamNumInt] = 0;
     teamNumInt++;
-    if(teamNumInt == 4){
+    if(teamNumInt == maxTeams){
         $("#user-create-container").hide();
+
         let rosterContainer = document.createElement("div");
         document.body.appendChild(rosterContainer);
         rosterContainer.id = "roster-container";
@@ -49,14 +70,14 @@ function startDraft(){
 
     alerts = document.createElement('div');
     alerts.style.padding = "35px";
-    alerts.style.width = "400px";
+    alerts.style.width = "500px";
     alerts.id = "alerts";
 
 
     rosterContainer.appendChild(alerts);
     $(alerts).animate({height: '300px'}, 'medium');
 
-    alerts.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>Handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Be careful with your selections! Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button">Begin</button>';
+    alerts.innerHTML = 'The first team to draft will be randomly chosen. Subsequent drafts will proceed in order from left to right.<br><br>When the draft has finished, handicaps will be awarded to teams with fewer points scored in 2019.<br><br>Some riders may be omitted to ensure each team has the same number of riders.<br><br>Click on a rider to view 2019 performance stats. <br><br><button id="accept" type="button">Begin</button>';
 
     $("#accept").click(function(){
         $("#alerts").remove();
@@ -65,23 +86,32 @@ function startDraft(){
 }
 function assignDraftOrder(){
     
-    for(i = 0; i<4; i++){
+    for(i=0; i< maxTeams; i++){
         document.getElementById("team"+i).style.opacity = "30%";
     }
 
     showRiders();
-    let teamArray = ['0','1','2','3']
+    let teamArray = [];
+    for (i=0; i < maxTeams; i++){
+        teamArray[i] = i;
+    }
     
-    let randTeam = Math.floor(Math.random()*4);
+    let randTeam = Math.floor(Math.random()*maxTeams);
     currentDraft = teamArray[randTeam];
     firstDraft = document.getElementById('team'+currentDraft);
     firstDraft.style.opacity = "100%";
 
 }
 
-function showRiders(){
-    var i;
+function determineRiderQuantity(){
+    let maxRiders = (Math.floor(riders.length/maxTeams))*maxTeams;
+    riders.splice(maxRiders,10);
+}
 
+
+
+function showRiders(){
+    determineRiderQuantity();
     for (i = 0; i < riders.length; i++){
         //call each rider individually
         let rider = riders[i];
@@ -145,7 +175,7 @@ function highlightRider(riderID, rider){
     riderCard.appendChild(picBox);
     riderCard.appendChild(statsTable);
     riderCard.appendChild(buttonArea);
-    $(riderCard).animate({height: '570px'}, 'medium');
+    $(riderCard).animate({height: '550px'}, 'medium');
 
     //add rider name and image
     nameBox.innerHTML = rider.name
@@ -168,10 +198,6 @@ function highlightRider(riderID, rider){
 
     
     $(".draft-btn").click(function(){
-        //clear stats and buttons for smoother animation
-        statsTable.innerHTML = "";
-        buttonArea.innerHTML = "";
-        $(riderCard).animate({height: '250px'},5);
         draft(riderID,rider);
         $(".riderBox").show();
     });
@@ -184,7 +210,8 @@ function highlightRider(riderID, rider){
 
 function draft(riderID,rider){
     let currentTeam = document.getElementById("team"+currentDraft);
-    $(riderCard).animate({top: '100%', opacity: '0%', height: '0px'}, 'medium', function(){$(".riderCard").remove()});
+
+    $(riderCard).animate({top: '150%', opacity: '0%'}, 'medium', function(){$(".riderCard").remove()});
     
     let addedRider = document.createElement('div');
     addedRider.className = "drafted-rider"
@@ -204,31 +231,28 @@ function draft(riderID,rider){
     //move to next draft
     currentDraft++;
 
-    if(currentDraft > 3){
+    if(currentDraft == maxTeams){
         currentDraft = 0;
     }
     currentTeam = document.getElementById("team"+currentDraft);
-    if(document.getElementById("roster-container").innerHTML == ""){
-    
-        let teams = $(".teams");
-        teams.animate({opacity: '100%', top: '30%', height: '600px'},'slow');
-
+    if(document.getElementById("roster-container").innerHTML == ""){  
+        $("#team-container").animate({height: '85%'}, 'slow');
+        for(i = 0; i < maxTeams; i++){
+             $("#team"+i).animate({opacity: '100%'}, 'fast');
+        }
         applyHandicap();
     }
     else{
-        $(currentTeam).animate({opacity: "100%"},'medium');
+        $(currentTeam).animate({opacity: "100%"},'slow');
     }
 }
 
 function applyHandicap(){
-    teampoints.splice(0,1);
-    teampoints.splice(4,1);
+    largest = Math.max.apply(Math, teampoints);
 
-    let largest = Math.max.apply(Math, teampoints);
+    for(let i = 0; i < teampoints.length; i++){
 
-    for(let i = 1; i<5; i++){
-        let hc = "hc"+i;
-        hc = Math.floor(((largest - teampoints[(i-1)])/largest)*100);
+        hc = Math.floor(((largest - teampoints[i])/largest)*100);
 
         let handicapName = "handicap"+i;
         let handicap = document.createElement('div');

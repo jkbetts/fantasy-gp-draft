@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html id="html">
+<html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" user-scalable=no>
-    <title>2020 MotoGP Fantasy Draft</title>
-
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Muli&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta property="og:image" content="images/thumbnail.png">
+    <title>2020 MotoGP Fantasy Draft</title>
 </head>
 
 <body>
-    <div id="header">
+    <header>
         2020 MotoGP Fantasy Draft Generator
-    </div>
+    </header>
 
     <div id="user-create-container">
         <p>Enter Team Names:</p>
@@ -23,7 +23,8 @@
         </form>
 
     </div>
-
+    <div id ="team-container">
+    </div>
     <div id="statsTable" hidden>
         <table>
             <tr>
@@ -58,6 +59,7 @@
     </div>
     <div id="mgplogo"><img src="https://css.motogp.com/w2015/dorna_modules/video-section/img/logo_motogp.svg">
 
+    <script type="text/javascript" src="riders.js"></script>
     <script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>

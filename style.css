@@ -1,5 +1,4 @@
-html{
-    display: block;
+body{
     background: #dbdbdb;
     color: #293440;
     display: block;
@@ -12,9 +11,9 @@ html{
     overflow-x: hidden;
 }
 
-#header{
+header{
     font-family: 'Montserrat', sans-serif;
-    color: #29344080;
+    color: #29344060;
     position: fixed;
     top: 20px;
     width: 100%;
@@ -44,14 +43,27 @@ html{
     box-sizing: border-box;
 }
 
-#team1, #team2, #team3, #team4{
+#team-container{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 300px;
+    grid-gap: 25px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: -1;
+}
+
+.team{
     color: #29344080;
     background: #efeeee;;
-    position: fixed;
+    /* margin: 0 25px 0 25px; */
+    position: relative;
     padding: 20px;
-    left: 2.5%;
-    bottom: 20px;
-    width: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    height: auto;
     text-align: center;
     border: 1px solid #29344020;
     border-radius: 12px;
@@ -59,24 +71,6 @@ html{
     box-sizing: border-box;
     line-height: 20px;
     z-index: 1;
-}
-#team2{
-
-    left: 27.5%;
-
-}
-#team3{
-
-    left: 52.5%;
-
-}
-#team4{
-
-    left: 77.5%;
-}
-
-#team1:hover, #team2:hover, #team3:hover, #team4:hover{
-    opacity: 100%;
 }
 
 input{
@@ -114,8 +108,9 @@ button:focus{
     padding:40px;
     height: 500px;
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-rows: 28% 28% 28% 28%;
+    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-rows: 24% 24% 24% 24%;
+    grid-gap: 1%;
     box-sizing: border-box;
 }
 #start-draft{
@@ -162,8 +157,8 @@ button:focus{
     padding-top: 17px;
     padding-left: 10px;
     padding-right: 10px;
-    width: 95%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     text-align: center;
     line-height: 50px;
     border-radius: 12px;
@@ -221,7 +216,7 @@ td{
 }
 
 
-#team-title1, #team-title2, #team-title3, #team-title4{
+.team-title{
     position: relative;
     margin-left: auto;
     margin-right: auto;

@@ -11,7 +11,10 @@ body{
     background-attachment: fixed;   
     overflow-x: hidden;
 }
-
+img{
+    border-radius: 7px;
+    filter: grayscale(10%);
+}
 header{
     font-family: 'Montserrat', sans-serif;
     color: #29344060;
@@ -39,7 +42,6 @@ header{
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
-    /* border: 1px solid #29344020; */
     border-radius: 12px;
     box-shadow: -6px -6px 26px #ffffff50, 6px 6px 26px #29344040;
     box-sizing: border-box;
@@ -52,16 +54,11 @@ header{
     width: 100%;
     flex-direction: row;
     justify-content: center;
-    /* grid-auto-flow: column;
-    grid-auto-columns: minmax(225px, 350px);
-    grid-gap: 15px; */
     padding: 20px;
     position: fixed;
     bottom: 0;
-    /* left: 50%;
-    transform: translate(-50%); */
-    z-index: -1;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .team{
@@ -114,14 +111,16 @@ button:focus{
     outline:none;
 }
 #roster-container{
-    margin-top: 40px;
-    padding:40px;
+    margin: 60px 0 0 0;
+    padding: 20px;
     height: 500px;
-    display: grid;
-    grid-template-columns: 19% 19% 19% 19% 19%;
-    grid-template-rows: 24% 24% 24% 24%;
-    grid-gap: 1%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
     box-sizing: border-box;
+    overflow: scroll;
+    z-index: 0;
 }
 #start-draft{
     position: absolute;
@@ -152,30 +151,33 @@ button:focus{
     top: 42%;
     left: 50%;
     transform: translate(-50%,-50%);
-    /* padding: 25px; */
     border-radius: 12px;
     box-sizing: border-box;
     box-shadow: -6px -6px 26px #ffffff80, 6px 6px 26px #29344050;
     z-index: 2;
 }
+.riderCard img{
+    margin: 10px;
+    filter: grayscale(0%);
+    border-radius: 12px;
+    box-shadow: -6px -6px 26px #ffffff80, 6px 6px 26px #29344050;
+}
 
 .riderBox{
-    display: table;
+    display: flex;
+    justify-content: space-evenly;
     font-family: 'Muli', sans-serif;
     color: #29344080;
     background: #efeeee;
-    padding-top: 17px;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 100%;
-    height: 100%;
-    text-align: center;
+    margin: 5px;
+    width: 210px;
+    height: 100px;
+    align-items: center;
     line-height: 50px;
     border-radius: 12px;
     box-shadow: -6px -6px 26px #ffffff80, 6px 6px 16px #29344050;
     box-sizing: border-box;
-    /* font-size: 2vmin; */
-    opacity: 0%;
+    opacity: 97%;
     border: 1px solid #ffffff20;
 }
 .riderBox:hover{
@@ -187,7 +189,9 @@ button:focus{
 .riderBox:hover #riderpic{
     opacity: 100%;
 }
-
+.riderBox:hover img{
+    filter: grayscale(0%);
+}
 #nameBox{
     font-size: 25px;
 }
@@ -263,12 +267,9 @@ td{
 }
 #ridername{
     position: relative;
-    display: table-cell;
+
     vertical-align: middle;
-    bottom: 3px;
-    width: 125px;
-    top: -10px;
-    left: 2px;
+    width: 100px;
     font-size: 16px;
     line-height: 16px;
     text-shadow: 1 1 5px black;
@@ -278,9 +279,6 @@ td{
     height: 75px;
     width: 85px;
     position: relative;
-    left: 5px;
-    bottom: 5px;
     box-shadow: -6px -6px 16px #ffffff80, 6px 6px 6px #29344020;
-    margin-left: auto;
-    margin-right: auto;
+
 }

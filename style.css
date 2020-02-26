@@ -1,5 +1,6 @@
 body{
-    background: #dbdbdb;
+    background: rgb(219,219,219);
+    background: radial-gradient(circle, rgba(219,219,219,1) 0%, rgba(190,190,190,1) 100%);
     color: #293440;
     display: block;
     margin: 0;
@@ -40,22 +41,25 @@ header{
     padding-bottom: 15px;
     /* border: 1px solid #29344020; */
     border-radius: 12px;
-    box-shadow: -6px -6px 26px #ffffff90, 6px 6px 26px #29344040;
+    box-shadow: -6px -6px 26px #ffffff50, 6px 6px 26px #29344040;
     box-sizing: border-box;
 }
 #user-create-container{
     display: none;
 }
 #team-container{
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    /* grid-auto-flow: column;
     grid-auto-columns: minmax(225px, 350px);
-    grid-gap: 15px;
+    grid-gap: 15px; */
     padding: 20px;
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translate(-50%);
+    /* left: 50%;
+    transform: translate(-50%); */
     z-index: -1;
     box-sizing: border-box;
 }
@@ -63,20 +67,19 @@ header{
 .team{
     color: #29344080;
     background: #efeeee;;
-    /* margin: 0 25px 0 25px; */
     position: relative;
+    bottom: -100%;
     padding: 20px;
-    margin: 0 0 10px 0;
-    left: 50%;
-    transform: translate(-50%);
-    width: 100%;
+    margin: 0 10px;
+    width: 300px;
     height: auto;
     text-align: center;
     border: 1px solid #29344020;
     border-radius: 12px;
-    box-shadow: -6px -6px 26px #ffffff90, 6px 6px 26px #29344040;
+    box-shadow: 6px 6px 26px #29344040;
     box-sizing: border-box;
     line-height: 20px;
+    opacity: 0;
     z-index: 1;
 }
 

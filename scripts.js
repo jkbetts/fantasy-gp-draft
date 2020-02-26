@@ -34,6 +34,7 @@ function createTeam(){
         newTeam.id = teamID;
         newTeam.className = "team";
         teamContainer.appendChild(newTeam);
+        $(newTeam).animate({bottom: '0', opacity: '100%'},'medium');
         addTeamName(teamID);
 
         let pointsTotal = document.createElement('div');
@@ -52,7 +53,6 @@ function createTeam(){
         document.body.appendChild(rosterContainer);
         rosterContainer.id = "roster-container";
         rosterContainer.innerHTML = '<button id="start-draft">Start Draft</button>';
-
         $("#start-draft").click(function(){startDraft();});
     }
 }
@@ -87,7 +87,7 @@ function startDraft(){
 function assignDraftOrder(){
     
     for(i=0; i< maxTeams; i++){
-        document.getElementById("team"+i).style.opacity = "30%";
+        document.getElementById("team"+i).style.opacity = "10%";
     }
 
     showRiders();
@@ -221,8 +221,8 @@ function draft(riderID,rider){
 
     document.getElementById(riderID).remove();
 
-    $(currentTeam).animate({opacity: '30%'},"medium");
-    
+    $(currentTeam).animate({opacity: '10%'},'slow');
+
     //add rider points to estimated points total from 2019
     teampoints[currentDraft] += rider.points;
 
@@ -235,6 +235,8 @@ function draft(riderID,rider){
         currentDraft = 0;
     }
     currentTeam = document.getElementById("team"+currentDraft);
+
+    //if the rider roster is empty, enlarge all teams and increase opacity
     if(document.getElementById("roster-container").innerHTML == ""){  
         $("#team-container").animate({height: '85%'}, 'slow');
         for(i = 0; i < maxTeams; i++){

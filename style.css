@@ -177,7 +177,7 @@ button:focus{
     border-radius: 12px;
     box-shadow: -6px -6px 26px #ffffff80, 6px 6px 16px #29344050;
     box-sizing: border-box;
-    opacity: 97%;
+    opacity: 0;
     border: 1px solid #ffffff20;
 }
 .riderBox:hover{
